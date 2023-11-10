@@ -31,6 +31,7 @@
                     </li>
                 @endauth
                 @auth('company')
+                    <li><a href="{{ route('jobs.create') }}">NEW</a></li>
                     <li>
                         <a href="{{ route('companies.logout') }}">
                             LOG_OUT

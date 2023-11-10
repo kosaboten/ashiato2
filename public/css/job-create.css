@@ -1,0 +1,38 @@
+body {
+    background-color: #F0F3F5;
+    font-family: '源ノ角ゴシック JP';
+    text-align: center;
+    margin: auto;
+    height: 1200px;
+}
+
+form {
+    margin: 0 auto;
+    text-align: left;
+    width: 1000px;
+}
+
+label {
+    font-size: 18px;
+}
+
+input[type="text"], textarea {
+    border: #CDD6DD 1px solid;
+    background-color: white;
+    padding: 5px;
+    margin-bottom: 30px;
+    width: 660px;
+}
+
+input[type="text"] {
+    width: 400px;
+    height: 40px;
+}
+
+button[type="submit"] {
+    height: 48px;
+    width: 150px;
+    background-color: #004BB1;
+    color: white;
+    border-radius: 25px;
+}

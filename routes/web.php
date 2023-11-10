@@ -57,10 +57,12 @@ Route::group(['prefix' => 'companies'], function () {
             ->name('companies.dashboard');
 
         Route::get('logout', [CompanyLoginController::class, 'logout'])->name('companies.logout');
-
-        Route::resource('jobs', JobController::class)
-            ->only(['create', 'store', 'edit', 'update', 'destroy']);
     });
+});
+
+Route::middleware(['auth:company'])->group(function () {
+    Route::resource('jobs', JobController::class)
+        ->only(['create', 'store', 'edit', 'update', 'destroy']);
 
     Route::resource('jobs', JobController::class)
         ->only(['show', 'index']);
