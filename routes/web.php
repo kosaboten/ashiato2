@@ -52,11 +52,12 @@ Route::group(['prefix' => 'companies'], function () {
     // ログインしてないと見せたくないページやエンドポイントなどは、以下のミドルウェア内に記述
     Route::middleware(['auth:company'])->group(function () {
         // ダッシュボード
-        Route::get('dashboard', fn() => view('companies.dashboard'))
+        Route::get('dashboard', fn () => view('companies.dashboard'))
             ->name('companies.dashboard');
-
+        
         Route::get('logout', [CompanyLoginController::class, 'logout'])->name('companies.logout');
     });
+
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

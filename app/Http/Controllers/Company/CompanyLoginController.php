@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class CompanyLoginController extends Controller
@@ -38,9 +39,11 @@ class CompanyLoginController extends Controller
         Auth::guard('company')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+        // セッション削除追加
+        Session::flush();
 
         // ログアウトしたらログインフォームにリダイレクト
-        return redirect()->route('companies.login')->with([
+        return redirect()->route('dashboard')->with([
             'logout_msg' => 'ログアウトしました',
         ]);
     }

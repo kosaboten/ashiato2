@@ -13,7 +13,7 @@
                     <h1 class="text-white">Companyのダッシュボード</h1>
                     {{ __("You're logged in!") }}
 
-                    <div>{{ Auth::user()->name }}</div>
+                    <div>{{ Auth::guard('company')->user()->name }}</div>
 
                 </div>
             </div>
