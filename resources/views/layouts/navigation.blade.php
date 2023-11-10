@@ -69,6 +69,16 @@
                                 </x-dropdown-link>
                             @endauth
                         @endif
+
+                        @auth
+                        @else
+                            <x-dropdown-link :href="route('register')">
+                                {{ __('Sign Up') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('login')">
+                                {{ __('Log In') }}
+                            </x-dropdown-link>
+                        @endauth
                     </x-slot>
                 </x-dropdown>
             </div>

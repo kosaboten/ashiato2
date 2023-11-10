@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Company\CompanyLoginController;
 use App\Http\Controllers\Company\CompanyRegisterController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Company;
 use Illuminate\Support\Facades\Route;
@@ -17,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// 一番最初に表示される画面は案件一覧
+Route::get('/', [JobController::class, 'index'])
+    ->name('root');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('jobs.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -54,10 +55,17 @@ Route::group(['prefix' => 'companies'], function () {
         // ダッシュボード
         Route::get('dashboard', fn () => view('companies.dashboard'))
             ->name('companies.dashboard');
-        
+
         Route::get('logout', [CompanyLoginController::class, 'logout'])->name('companies.logout');
+
+        Route::resource('jobs', JobController::class)
+            ->only(['create', 'store', 'edit', 'update', 'destroy']);
     });
 
+    Route::resource('jobs', JobController::class)
+        ->only(['show', 'index']);
 });
+
+
 
 require __DIR__ . '/auth.php';

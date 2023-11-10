@@ -50,6 +50,7 @@
                             GUEST
                         @endauth
                     @endauth
+                   
                 </li>
             @endif
         </ul>
