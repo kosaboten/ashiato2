@@ -2,22 +2,28 @@
     <div id="header-title">ASHIATO</div>
     <ul>
         @if (Auth::check() || Auth::guard('company'))
-            @auth('web')
-                <li><a href="#">LIKES</a></li>
+            @auth('company')
+                <li><a href="{{ route('jobs.index') }}">JOBS</a></li>
+                <li><a href="{{ route('jobs.create') }}">NEW</a></li>
                 <li>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <input type="submit" value="LOG_OUT" style="color: white; font-family: 'Microsoft New Tai Lue';">
-                    </form>
+                    <a href="{{ route('companies.logout') }}">
+                        LOG_OUT
+                    </a>
                 </li>
             @else
-                @auth('company')
-                    <li><a href="{{ route('jobs.index') }}">JOBS</a></li>
-                    <li><a href="{{ route('jobs.create') }}">NEW</a></li>
+                @auth('web')
+                    <li><a href="#">LIKES</a></li>
                     <li>
-                        <a href="{{ route('companies.logout') }}">
-                            LOG_OUT
-                        </a>
+                        <form action="{{ route('portfolios.store') }}" method="post">
+                            @csrf
+                            <input type="submit" value="NEW" style="color: white">
+                        </form>
+                    </li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <input type="submit" value="LOG_OUT" style="color: white; font-family: 'Microsoft New Tai Lue';">
+                        </form>
                     </li>
                 @else
                     <li><a href="{{ route('register') }}">SIGN_UP</a></li>

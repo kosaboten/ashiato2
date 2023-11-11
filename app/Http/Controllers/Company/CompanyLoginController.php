@@ -24,7 +24,7 @@ class CompanyLoginController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         if (Auth::guard('company')->attempt($credentials)) {
-            return redirect()->route('companies.dashboard')->with([
+            return redirect()->route('portfolios.index')->with([
                 'login_msg' => 'ログインしました。',
             ]);
         }
@@ -43,7 +43,7 @@ class CompanyLoginController extends Controller
         Session::flush();
 
         // ログアウトしたらログインフォームにリダイレクト
-        return redirect()->route('dashboard')->with([
+        return redirect()->route('jobs.index')->with([
             'logout_msg' => 'ログアウトしました',
         ]);
     }
