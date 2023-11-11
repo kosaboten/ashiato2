@@ -1,0 +1,52 @@
+body {
+    background-color: #F0F3F5;
+    font-family: '源ノ角ゴシック JP';
+    margin: auto;
+}
+
+#main-contents {
+    display: grid;
+    grid-template-columns: 150px 905px 325px;
+    margin-bottom: 100px;
+}
+
+#job-img {
+    width: 780px;
+}
+
+#detail {
+    margin-left: 150px;
+}
+
+#detail div {
+    margin-bottom: 30px;
+}
+
+#job {
+    text-align: left;
+    width: 1000px;
+    background-color: white;
+}
+
+#contact-form {
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    text-align: center;
+    position: fixed;
+    right: 0;
+    top: 60px;
+}
+
+#contact-form div{
+    margin-top: 22px;
+}
+
+#contact-form button {
+    width: 120px;
+    height: 40px;
+    background-color: #004BB1;
+    border-radius: 4px;
+    color: white;
+}
+

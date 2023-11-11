@@ -8,6 +8,7 @@
         @endauth
         @if (Auth::check() || Auth::guard('company'))
             @auth('web')
+                <li><a href="{{ route('jobs.index') }}">Jobs</a></li>
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -16,6 +17,7 @@
                 </li>
             @endauth
             @auth('company')
+                <li><a href="{{ route('jobs.create') }}">NEW</a></li>
                 <li>
                     <a href="{{ route('companies.logout') }}">
                         LOG_OUT
@@ -23,6 +25,7 @@
                 </li>
             @endauth
         @endif
+
         @if (Auth::check() || Auth::guard('company'))
             <li>
                 @auth('web')
