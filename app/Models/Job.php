@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Job extends Model
 {
@@ -20,6 +21,11 @@ class Job extends Model
         'address',
         'contact',
     ];
+
+    public function image_url()
+    {
+        return Storage::url('images/jobs/' . $this->image);
+    }
 
     public function company()
     {

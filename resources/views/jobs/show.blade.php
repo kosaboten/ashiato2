@@ -20,7 +20,7 @@
         <div id="about">
             <h1>{{ $job->title }}</h1>
             <!--   ここに画像を挿入   -->
-            <img id=job-img src="{{ Storage::url('images/jobs/' . $job->image) }}" alt="">
+            <img id="job-img" src="{{ $job->image_url() }}" alt="職場のイメージ画像">
             <div id="detail">
                 <div>
                     <h3>勤務地</h3>
@@ -64,6 +64,22 @@
                 <p>Email: example@gmail.com</p>
                 <br>
                 <button type="button">応募する</button>
+
+                {{-- 後でifで囲む --}}
+                <div id="button-group">
+                    <div>
+                        <button style="margin-left: 45px;" id="edit-button"
+                            onclick='location.href="{{ route("jobs.edit", $job) }}"'>編集</a>
+                    </div>
+                    <div>
+                        <form action="{{ route('jobs.destroy', $job) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input id="delete-button" type="submit" value="削除"
+                                onclick="if(!confirm('削除しますか？')){return false};">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

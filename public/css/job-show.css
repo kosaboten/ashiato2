@@ -30,7 +30,6 @@ body {
 
 #contact-form {
     width: 300px;
-    height: 200px;
     background-color: white;
     text-align: center;
     position: fixed;
@@ -40,6 +39,7 @@ body {
 
 #contact-form div{
     margin-top: 22px;
+    margin-bottom: 22px;
 }
 
 #contact-form button {
@@ -48,5 +48,19 @@ body {
     background-color: #004BB1;
     border-radius: 4px;
     color: white;
+}
+
+#button-group {
+    display: flex;
+    text-align: center;
+}
+
+#button-group #edit-button, #delete-button {
+    width: 80px;
+    height: 40px;
+    background-color: #004BB1;
+    border-radius: 4px;
+    color: white;
+    margin-right: 40px;
 }
 
