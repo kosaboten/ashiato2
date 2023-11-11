@@ -21,7 +21,7 @@ class SkillController extends Controller
      */
     public function create()
     {
-        //
+        return view('skills.create');
     }
 
     /**
@@ -29,7 +29,6 @@ class SkillController extends Controller
      */
     public function store(StoreskillRequest $request)
     {
-        //
     }
 
     /**

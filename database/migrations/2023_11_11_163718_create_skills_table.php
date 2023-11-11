@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('portfolio_id')
+                ->constrained('portfolios')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->string('name');
+            $table->integer('level');
             $table->timestamps();
         });
     }

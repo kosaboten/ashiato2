@@ -43,7 +43,7 @@
                     <br>
                     名前:{{ $portfolio->user->name }}<br><br>
                     <label>所属</label><br>
-                    <input type="text" name="affiliation"><br>
+                    <input type="text" name="affiliation" value="{{ old('affiliation', $portfolio->affiliation) }}"><br>
                     <label>自己紹介</label><br>
                     <textarea name="self_introduction" cols="40">{{ old('self_introduction', $portfolio->self_introduction) }}</textarea>
                 </section>
@@ -59,17 +59,11 @@
                     <a class="section-title" id="skills">SKILLS</a>
                     <div id="skills-box">
                         <div>
-                            <p class="skill-title">使用言語 / ツール</p>
-                            <div>
-                                <p class="skill-level">1: サッと学んだ程度</p><br>
-                                <p class="skill-level">2: 使用経験あり</p><br>
-                                <p class="skill-level">3: 半年以上学んだ</p><br>
-                                <p class="skill-level">4: 実務レベルで使いこなせる</p><br>
-                            </div>
+                            <a href="{{ route('skills.create') }}"><p class="skill-title">使用言語 / ツール</p></a>
                             <div>
                                 <p class="skill-title">保有資格</p>
                                 <p class="work_experience">職歴</p>
-                                <textarea name="work_experience" cols="30" rows="8"></textarea>
+                                <textarea name="work_experience" cols="30" rows="8">{{ old('work_experience', $portfolio->work_experience) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -77,16 +71,16 @@
                 <section>
                     <a class="section-title" id="contact">CONTACT</a><br>
                     <div class="contact-icons">
-                        住んでいる地域<input type="text" name="region"><br>
+                        住んでいる地域<input type="text" name="region" value="{{ old('region', $portfolio->region) }}"><br>
                     </div>
-                    Twitter<input type="text" name="twitter"><br>
-                    Facebook<input type="text" name="facebook"><br>
-                    Instagram<input type="text" name="instagram"><br>
+                    Twitter<input type="text" name="twitter" value="{{ old('region', $portfolio->twitter) }}"><br>
+                    Facebook<input type="text" name="facebook" value="{{ old('region', $portfolio->facebook) }}"><br>
+                    Instagram<input type="text" name="instagram" value="{{ old('region', $portfolio->instagram) }}"><br>
                 </section>
 
                 公開しますか？
                 <label class="toggle-button-001">
-                    <input type="checkbox" name="public_status" value="1">
+                    <input type="checkbox" name="public_status" value="1" {{ $portfolio->public_status ? "checked" : "" }}>
                 </label><br>
 
                 <button type="submit">変更</button>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Company\CompanyRegisterController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SkillController;
 use App\Models\Company;
 use Illuminate\Support\Facades\Route;
 
@@ -74,6 +75,14 @@ Route::resource('portfolios', PortfolioController::class)
     ->middleware('auth');
 
 Route::resource('portfolios', PortfolioController::class)
+    ->only(['show', 'index']);
+
+// portfoliosのルーティング
+Route::resource('skills', SkillController::class)
+    ->only(['create', 'store', 'edit', 'update', 'destroy'])
+    ->middleware('auth');
+
+Route::resource('skills', SkillController::class)
     ->only(['show', 'index']);
 
 require __DIR__ . '/auth.php';
