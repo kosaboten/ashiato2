@@ -8,7 +8,7 @@
         @endauth
         @if (Auth::check() || Auth::guard('company'))
             @auth('web')
-                <li><a href="{{ route('jobs.index') }}">Jobs</a></li>
+                <li><a href="#">LIKES</a></li>
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

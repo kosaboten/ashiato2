@@ -21,8 +21,22 @@ class UpdateJobRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
+        $rule = [
+        'title' => 'required',
+        'region' => 'required',
+        'access' => 'required',
+        'job_description' => 'required',
+        'employment_status' => 'required',
+        'eligibility' => 'required',
+        'pay' => 'required',
+        'address' => 'required',
+        'contact' => 'required',
         ];
+
+        if ($this->file('image')) {
+            $rule['image'] = 'required|file|image|mimes:jpg,png';
+        }
+
+        return $rule;
     }
 }
