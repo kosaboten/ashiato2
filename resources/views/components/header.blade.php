@@ -1,11 +1,6 @@
 <header>
     <div id="header-title">ASHIATO</div>
     <ul>
-        @auth
-        @else
-            <li><a href="{{ route('register') }}">SIGN_UP</a></li>
-            <li><a href="{{ route('login') }}">LOG_IN</a></li>
-        @endauth
         @if (Auth::check() || Auth::guard('company'))
             @auth('web')
                 <li><a href="#">LIKES</a></li>
@@ -15,14 +10,19 @@
                         <input type="submit" value="LOG_OUT" style="color: white; font-family: 'Microsoft New Tai Lue';">
                     </form>
                 </li>
-            @endauth
-            @auth('company')
-                <li><a href="{{ route('jobs.create') }}">NEW</a></li>
-                <li>
-                    <a href="{{ route('companies.logout') }}">
-                        LOG_OUT
-                    </a>
-                </li>
+            @else
+                @auth('company')
+                    <li><a href="{{ route('jobs.index') }}">JOBS</a></li>
+                    <li><a href="{{ route('jobs.create') }}">NEW</a></li>
+                    <li>
+                        <a href="{{ route('companies.logout') }}">
+                            LOG_OUT
+                        </a>
+                    </li>
+                @else
+                    <li><a href="{{ route('register') }}">SIGN_UP</a></li>
+                    <li><a href="{{ route('login') }}">LOG_IN</a></li>
+                @endauth
             @endauth
         @endif
 

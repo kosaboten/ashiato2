@@ -74,22 +74,22 @@
 
                 {{-- 後でifで囲む --}}
                 <div id="button-group">
-                    @can('update', $job)
-                        <div>
-                            <button style="margin-left: 45px;" id="edit-button"
-                                onclick='location.href="{{ route("jobs.edit", $job) }}"'>編集</a>
-                        </div>
-                    @endcan
-                    @can('delete', $job)
-                        <div>
-                            <form action="{{ route('jobs.destroy', $job) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <input id="delete-button" type="submit" value="削除"
-                                    onclick="if(!confirm('削除しますか？')){return false};">
-                            </form>
-                        </div>
-                    @endcan
+                    @if (isset(Auth::guard('company')->user()->id))
+                        @if (Auth::guard('company')->user()->id === $job->company_id)
+                            <div>
+                                <button style="margin-left: 45px;" id="edit-button"
+                                    onclick='location.href="{{ route('jobs.edit', $job) }}"'>編集</a>
+                            </div>
+                            <div>
+                                <form action="{{ route('jobs.destroy', $job) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input id="delete-button" type="submit" value="削除"
+                                        onclick="if(!confirm('削除しますか？')){return false};">
+                                </form>
+                            </div>
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>

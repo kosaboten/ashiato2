@@ -22,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [JobController::class, 'index'])
     ->name('root');
 
-Route::get('/dashboard', function () {
-    return view('jobs.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [JobController::class, 'index'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -60,12 +58,12 @@ Route::group(['prefix' => 'companies'], function () {
     });
 });
 
-Route::resource('jobs', JobController::class)
-    ->only(['show', 'index']);
-
 Route::middleware(['auth:company'])->group(function () {
     Route::resource('jobs', JobController::class)
         ->only(['create', 'store', 'edit', 'update', 'destroy']);
 });
+
+Route::resource('jobs', JobController::class)
+    ->only(['show', 'index']);
 
 require __DIR__ . '/auth.php';

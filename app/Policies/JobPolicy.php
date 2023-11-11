@@ -48,7 +48,7 @@ class JobPolicy
     {
         return $company->id === $job->company_id;
     }
-
+    
     /**
      * Determine whether the user can restore the model.
      */
