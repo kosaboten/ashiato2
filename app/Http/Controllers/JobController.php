@@ -146,7 +146,29 @@ class JobController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $job = Job::find($id);
+
+        // トランザクション開始
+        DB::beginTransaction();
+        try {
+            $job->delete();
+
+            // 画像削除
+            if (!Storage::delete('images/jobs/' . $job->image)) {
+                // 例外を投げてロールバックさせる
+                throw new \Exception('画像ファイルの削除に失敗しました。');
+            }
+
+            // トランザクション終了(成功)
+            DB::commit();
+        } catch (\Exception $e) {
+            // トランザクション終了(失敗)
+            DB::rollback();
+            return back()->withErrors($e->getMessage());
+        }
+
+        return redirect()->route('jobs.index')
+            ->with('notice', '記事を削除しました');
     }
 
     private static function createFileName($file)
