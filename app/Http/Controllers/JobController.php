@@ -17,8 +17,7 @@ class JobController extends Controller
     public function index()
     {
         $jobs = Job::all();
-
-        return view('jobs.index', compact('jobs'));
+        return view('jobs.index', ['jobs' => $jobs]);
     }
 
     /**
@@ -71,6 +70,7 @@ class JobController extends Controller
     public function show(string $id)
     {
         $job = Job::find($id);
+        // dd($job);
 
         return view('jobs.show', ['job'=>$job]);
     }

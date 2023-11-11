@@ -77,7 +77,7 @@
                     @can('update', $job)
                         <div>
                             <button style="margin-left: 45px;" id="edit-button"
-                                onclick='location.href="{{ route('jobs.edit', $job) }}"'>編集</a>
+                                onclick='location.href="{{ route("jobs.edit", $job) }}"'>編集</a>
                         </div>
                     @endcan
                     @can('delete', $job)

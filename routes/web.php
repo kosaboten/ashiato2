@@ -60,14 +60,12 @@ Route::group(['prefix' => 'companies'], function () {
     });
 });
 
+Route::resource('jobs', JobController::class)
+    ->only(['show', 'index']);
+
 Route::middleware(['auth:company'])->group(function () {
     Route::resource('jobs', JobController::class)
         ->only(['create', 'store', 'edit', 'update', 'destroy']);
-
-    Route::resource('jobs', JobController::class)
-        ->only(['show', 'index']);
 });
-
-
 
 require __DIR__ . '/auth.php';
