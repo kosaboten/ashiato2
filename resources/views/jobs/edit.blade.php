@@ -17,7 +17,7 @@
         <h1>編集画面</h1>
         <br>
         <div id="main-contents">
-            <form id="job-register" action="{{ route('jobs.update', $job) }}" method="POST"  enctype="multipart/form-data">
+            <form id="job-register" action="{{ route('jobs.update', $job) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div>
