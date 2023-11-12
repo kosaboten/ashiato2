@@ -30,4 +30,14 @@ class Portfolio extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function skills()
+    {
+        $this->hasMany(Skill::class);
+    }
+
+    public function offers()
+    {
+        $this->hasMany(Skill::class);
+    }
 }

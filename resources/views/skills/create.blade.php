@@ -17,7 +17,7 @@
     <p class="skill-level">4: 実務レベルで使いこなせる</p><br>
 </div>
 
-<form action="{{ route('skills.store') }}" method="POST">
+<form action="{{ route('skills.store', $portfolio) }}" method="POST">
     @csrf
     <label>使用言語/ツール</label>
     <input type="text" name="name"><br>

@@ -3,6 +3,7 @@
     <ul>
         @if (Auth::check() || Auth::guard('company'))
             @auth('company')
+                <li><a href="{{ route('portfolios.index') }}">PORTFOLIOS</a></li>
                 <li><a href="{{ route('jobs.index') }}">JOBS</a></li>
                 <li><a href="{{ route('jobs.create') }}">NEW</a></li>
                 <li>
@@ -13,6 +14,7 @@
             @else
                 @auth('web')
                     <li><a href="#">LIKES</a></li>
+                    <li><a href="{{ route('portfolios.edit', Auth::id()) }}">EDIT</a></li>
                     <li>
                         <form action="{{ route('portfolios.store') }}" method="post">
                             @csrf

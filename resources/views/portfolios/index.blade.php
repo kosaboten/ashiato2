@@ -70,25 +70,24 @@
         {{-- ここから人材一覧 --}}
         <div id="jinzai">
             <div id="portfolio-list">
-                <div class="portfolio">
-                    <div class="wrap">
-                        <div class="flex-box">
-                            <img class="portfolio-img" src="java.jpg" alt="職">
-                            <p class="name">山田太郎</p>
-                            <div class="like-button">
-                                <img src="heart.png" alt=""> 100
+                @foreach ($portfolios as $portfolio)
+                    <a href="{{ route('portfolios.show', $portfolio) }}">
+                        <div class="portfolio">
+                            <div class="wrap" style="margin-top: 20px;">
+                                <div class="flex-box">
+                                    <img class="portfolio-img" src="{{ $portfolio->image_url() }}" alt="職">
+                                    <p class="name">{{ $portfolio->name }}</p>
+                                    <div class="like-button">
+                                        <img src="heart.png" alt=""> 100
+                                    </div>
+                                </div>
+                                <p class="self-introduction">
+                                    {{ $portfolio->self_introduction }}
+                                </p>
                             </div>
                         </div>
-                        <p class="self-introduction">
-                            ここにテキストが入ります。ここにテキストが入ります。ここにテキストが入ります。
-                            ここにテキストが入ります。ここにテキスト
-                        </p>
-                    </div>
-                </div>
-
-                <div class="job">
-
-                </div>
+                    </a>
+                @endforeach
             </div>
         </div>
 

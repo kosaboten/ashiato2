@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePortfolioRequest;
 use App\Http\Requests\UpdatePortfolioRequest;
 use App\Models\Portfolio;
+use App\Models\Skill;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +17,8 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        return view('portfolios.index');
+        $portfolios = Portfolio::latest()->get();
+        return view('portfolios.index', compact('portfolios'));
     }
 
     /**
@@ -59,7 +61,8 @@ class PortfolioController extends Controller
      */
     public function show(Portfolio $portfolio)
     {
-        return view('portfolios.show', compact('portfolio'));
+        $skills = Skill::where('portfolio_id', $portfolio->id)->get();
+        return view('portfolios.show', ['portfolio' => $portfolio, 'skills' => $skills]);
     }
 
     /**
@@ -67,7 +70,10 @@ class PortfolioController extends Controller
      */
     public function edit(Portfolio $portfolio)
     {
-        return view('portfolios.edit', ['portfolio' => $portfolio]);
+        $portfolio = Portfolio::where('user_id', Auth::id())->get();
+        $skills = Skill::where('portfolio_id', $portfolio[0]->id)->get();
+
+        return view('portfolios.edit', ['portfolio' => $portfolio[0], 'skills' => $skills]);
     }
 
     /**

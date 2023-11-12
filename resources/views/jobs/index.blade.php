@@ -90,11 +90,6 @@
                     </a>
                 </div>
             @endforeach
-
-
-            <div class="job">
-
-            </div>
         </div>
     </div>
 

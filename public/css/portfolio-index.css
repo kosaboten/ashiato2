@@ -157,15 +157,18 @@ h2 {
     background-color: white;
     border-radius: 15px;
     width: 800px;
-    height: 100px;
+    height: 80px;
+    padding-top: 1px;
 }
 
 .wrap {
     width: 700px;
-    margin: 10px auto;
+    margin: auto;
+    margin-top: 10px;
 }
 
 .flex-box {
+    margin-top: 20px;
     display: flex;
 }
 

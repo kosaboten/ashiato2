@@ -59,7 +59,12 @@
                     <a class="section-title" id="skills">SKILLS</a>
                     <div id="skills-box">
                         <div>
-                            <a href="{{ route('skills.create') }}"><p class="skill-title">使用言語 / ツール</p></a>
+                            <a href="{{ route('skills.create', $portfolio) }}"><p class="skill-title">使用言語 / ツール</p></a>
+                            <ul>
+                                @foreach ($skills as $skill)
+                                    {{ $skill->name }}/レベル{{ $skill->level }}
+                                @endforeach
+                            </ul>
                             <div>
                                 <p class="skill-title">保有資格</p>
                                 <p class="work_experience">職歴</p>
