@@ -40,4 +40,9 @@ class Portfolio extends Model
     {
         $this->hasMany(Skill::class);
     }
+
+    public function works()
+    {
+        $this->hasMany(Work::class);
+    }
 }
