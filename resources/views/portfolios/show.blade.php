@@ -31,7 +31,7 @@
                 {{ $portfolio->self_introduction }}
             </section>
             <section>
-                <a class="section-title" id="works">WORKS</a>
+                <a class="section-title" id="works" href="{{ route('works.show', $portfolio) }}">works.show</a>
                 <div class="works-box">
                     <div class="work"></div>
                     <div class="work"></div>
@@ -48,7 +48,6 @@
                         </div>
                     @endif
 
-
                     <div>
                         <p class="skill-title">使用言語 / ツール</p>
                         <ul>
@@ -60,6 +59,7 @@
                         <p class="skill-title">保有資格</p>
                         基本情報<br>
                         応用情報<br>
+                        Linucレベル1<br>
                         <br>
                         <p class="skill-title">職歴</p>
                         <p class="skill-body">{{ $portfolio->work_experience }}</p><br>

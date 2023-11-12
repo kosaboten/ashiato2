@@ -76,7 +76,7 @@
                             <div class="wrap" style="margin-top: 20px;">
                                 <div class="flex-box">
                                     <img class="portfolio-img" src="{{ $portfolio->image_url() }}" alt="職">
-                                    <p class="name">{{ $portfolio->name }}</p>
+                                    <p class="name">{{ $portfolio->user->name }}</p>
                                     <div class="like-button">
                                         <img src="heart.png" alt=""> 100
                                     </div>

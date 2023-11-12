@@ -6,6 +6,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\WorkController;
 use App\Models\Company;
 use Illuminate\Support\Facades\Route;
 
@@ -83,6 +84,14 @@ Route::resource('skills', SkillController::class)
     ->middleware('auth');
 
 Route::resource('skills', SkillController::class)
+    ->only(['show', 'index']);
+
+// worksのルーティング
+Route::resource('works', WorkController::class)
+    ->only(['create', 'store', 'edit', 'update', 'destroy'])
+    ->middleware('auth');
+
+Route::resource('works', WorkController::class)
     ->only(['show', 'index']);
 
 require __DIR__ . '/auth.php';

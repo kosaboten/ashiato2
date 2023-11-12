@@ -13,7 +13,6 @@ class Skill extends Model
         'portfolio_id',
         'name',
         'level',
-
     ];
 
     public function portfolio(){

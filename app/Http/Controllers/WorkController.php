@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
+use App\Models\Portfolio;
 use App\Models\Work;
+use Illuminate\Support\Facades\Auth;
 
 class WorkController extends Controller
 {
@@ -21,7 +23,7 @@ class WorkController extends Controller
      */
     public function create()
     {
-        //
+        return view('works.create');
     }
 
     /**
@@ -29,15 +31,17 @@ class WorkController extends Controller
      */
     public function store(StoreWorkRequest $request)
     {
-        //
+        $portfolio = Portfolio::where('user_id', Auth::id())->get();
+        
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Work $work)
+    public function show()
     {
-        //
+        $portfolio = Portfolio::where('user_id', Auth::id())->get();
+        return view('works.show', compact('portfolio'));
     }
 
     /**
