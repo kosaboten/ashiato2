@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/job-show.css') }}">
+</head>
+
+<body>
+    <x-header />
+
+    @if (session('notice'))
+        <div class="bg-blue-100 border-blue-500 text-blue-700 border-l-4 p-4 my-2">
+            {{ session('notice') }}
+        </div>
+    @endif
+    <x-validation-errors :errors="$errors" />
+
+    <div id="main-contents">
+        <div>
+        </div>
+        <div id="about">
+            <h1>{{ $job->title }}</h1>
+            <!--   ここに画像を挿入   -->
+            <img id="job-img" src="{{ $job->image_url() }}" alt="職場のイメージ画像">
+            <div id="detail">
+                <div>
+                    <h3>勤務地</h3>
+                    <p>{{ $job->region }}</p>
+                    <p>{{ $job->access }}</p>
+                </div>
+                <div>
+                    <h3>勤務時間</h3>
+                    <p>月曜日〜金曜日 9:00 - 17:00 (休憩1時間)</p>
+                </div>
+                <div>
+                    <h3>仕事内容</h3>
+                    <p>{!! nl2br(e($job->job_description)) !!}</p>
+                </div>
+                <div>
+                    <h3>雇用形態</h3>
+                    <p>{{ $job->employment_status }}</p>
+                </div>
+                <div>
+                    <h3>給与・報酬</h3>
+                    <p>{{ $job->eligibility }}</p>
+                </div>
+                <div>
+                    <h3>応募条件</h3>
+                    <p>{!! nl2br(e($job->eligibility)) !!}</p>
+                </div>
+                <div>
+                    <h3>住所</h3>
+                    <p>{{ $job->address }}-2-3</p>
+                </div>
+                <div id="contact">
+                    <h3>お問い合わせ</h3>
+                    <p>{!! nl2br(e($job->contact)) !!}</p>
+                </div>
+            </div>
+        </div>
+        <div id="contact-form">
+            <div>
+                <h3>お問い合わせ</h3>
+                <p>TEL: 1234-56-7890</p>
+                <p>Email: example@gmail.com</p>
+                <br>
+                <button type="button">応募する</button>
+
+                {{-- 後でifで囲む --}}
+                <div id="button-group">
+                    @if (isset(Auth::guard('company')->user()->id))
+                        @if (Auth::guard('company')->user()->id === $job->company_id)
+                            <div>
+                                <button style="margin-left: 45px;" id="edit-button"
+                                    onclick='location.href="{{ route('jobs.edit', $job) }}"'>編集</a>
+                            </div>
+                            <div>
+                                <form action="{{ route('jobs.destroy', $job) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input id="delete-button" type="submit" value="削除"
+                                        onclick="if(!confirm('削除しますか？')){return false};">
+                                </form>
+                            </div>
+                        @endif
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
